@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { addItemToCart } from "../cart/cartSlice"
 
 const ProductList = () => {
@@ -8,6 +8,8 @@ const ProductList = () => {
     const [product, setProduct] = useState([])
     const [loading, setLoading] = useState(false)
     const dispacth = useDispatch()
+    const cartItem = useSelector(state => state.cart.cartItems)
+    console.log(cartItem)
 
     useEffect(() => {
         setLoading(true)
@@ -21,8 +23,8 @@ const ProductList = () => {
           })
     }, [])
 
-    const handleBuy = () => {
-      dispacth(addItemToCart())
+    const handleBuy = (datas) => {
+      dispacth(addItemToCart(datas))
     }
 
     console.log(product)
@@ -39,7 +41,7 @@ const ProductList = () => {
               </div>
               <div className="flex flex-col gap-6 mt-8">
                 <button type="button" className="bg-blue-700 text-white hover:bg-blue-800 rounded-xl text-sm py-3 px-8"
-                onClick={() => handleBuy}>
+                onClick={() => handleBuy(datas)}>
                     Buy Now
                 </button>
                 <h3 className="font-bold text-black">{datas.title}</h3>

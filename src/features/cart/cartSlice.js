@@ -9,8 +9,9 @@ export const cartSlice = createSlice({
     name: "cart",
     initialState: initialstate,
     reducers: {
-        addItemToCart: () => {
-            consolo.log("redux/toolkit")
+        addItemToCart: (state, action) => {
+            const newTime = action.payload
+            state.cartitems.push(newTime)
         }
     }
 })
