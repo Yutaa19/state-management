@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { addItemToCart } from "../cart/cartSlice"
 
 const ProductList = () => {
@@ -8,8 +8,6 @@ const ProductList = () => {
     const [product, setProduct] = useState([])
     const [loading, setLoading] = useState(false)
     const dispacth = useDispatch()
-    const cartItem = useSelector(state => state.cart.cartItems)
-    console.log(cartItem)
 
     useEffect(() => {
         setLoading(true)
@@ -27,7 +25,6 @@ const ProductList = () => {
       dispacth(addItemToCart(datas))
     }
 
-    console.log(product)
   return (
     <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
         {product.map((datas) => {
